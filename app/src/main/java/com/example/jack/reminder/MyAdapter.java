@@ -42,7 +42,8 @@ public class MyAdapter extends RecyclerView.Adapter<ItemViewHolder> {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "Item " +(i+1)+ " was clicked!", Toast.LENGTH_SHORT).show();
-                context.startActivity(new Intent(context, ItemDetailsActivity.class));
+                //context.startActivity(new Intent(context, ItemDetailsActivity.class));
+                context.startActivity(new Intent(context, ReminderDetailsActivity.class));
             }
         });
 

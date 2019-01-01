@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ItemDetailsActivity" />
-        <activity android:name=".ReminderDetailsActivity"></activity>
+        <activity android:name=".ReminderDetailsActivity" />
+        <activity android:name=".NoteDetailsActivity"></activity>
     </application>
 
 </manifest>

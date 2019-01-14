@@ -1,13 +1,15 @@
 package com.example.jack.reminder;
 
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class Item {
-    String title, intro;
+public abstract class Item implements Serializable{
+    String title;
     Date date;
-    public Item(String title, String intro){
+    public Item(String title){
         this.title = title;
-        this.intro = intro;
-//        this.date = date;
+        date = new Date();
     }
 }

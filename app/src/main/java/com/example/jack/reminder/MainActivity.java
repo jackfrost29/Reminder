@@ -11,7 +11,7 @@ import java.util.List;
 public class MainActivity extends Activity {
 
     RecyclerView recyclerView;
-    List<Item> items = new ArrayList<>();
+    ArrayList<Item> items = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,5 +30,9 @@ public class MainActivity extends Activity {
         for(int i=1; i<=100; i++){
             items.add(new Item("Item "+i, "This is the "+i+"th item."));
         }
+    }
+
+    public static void saveItem(Item item, int position){
+
     }
 }

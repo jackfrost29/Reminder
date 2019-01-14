@@ -10,14 +10,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class MyAdapter extends RecyclerView.Adapter<ItemViewHolder> {
+public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<Item> items;
+    private ArrayList<Item> items;
     private Context context;
 
-    public MyAdapter(Context context, List<Item> items){
+    public MyAdapter(Context context, ArrayList<Item> items){
         this.items = items;
         this.context = context;
     }
@@ -25,19 +26,29 @@ public class MyAdapter extends RecyclerView.Adapter<ItemViewHolder> {
 
     @NonNull
     @Override
-    public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+
+        int x = getItemViewType(i);
+
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_item_list, viewGroup, false);
 
         return new ItemViewHolder(view);
     }
 
     @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+
+    }
+/*
+    @Override
     public void onBindViewHolder(@NonNull ItemViewHolder viewHolder, final int i) {
+
+
+
         final Item item = items.get(i);
 
         viewHolder.intro.setText(item.intro);
         viewHolder.title.setText(item.title);
-
         viewHolder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,6 +57,17 @@ public class MyAdapter extends RecyclerView.Adapter<ItemViewHolder> {
             }
         });
 
+    }*/
+
+    @Override
+    public int getItemViewType(int position){
+        Item obj = items.get(position)
+        if(obj instanceof Reminder)
+            return 1;
+        else if(obj instanceof Note)
+            return 2;
+        else
+            return 3;
     }
 
     @Override

@@ -15,4 +15,8 @@ public class ReminderDetailsActivity extends Activity {
     public void save(View view){
 
     }
+
+    public static void func(){
+
+    }
 }

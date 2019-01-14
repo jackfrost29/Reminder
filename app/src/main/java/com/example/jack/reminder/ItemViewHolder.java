@@ -13,8 +13,8 @@ public class ItemViewHolder extends RecyclerView.ViewHolder{
 
     public ItemViewHolder(@NonNull View itemView) {
         super(itemView);
-        title = itemView.findViewById(R.id.item_title);
-        intro = itemView.findViewById(R.id.item_brief_intro);
-        parent = itemView.findViewById(R.id.parent);
+        title = itemView.findViewById(R.id.item_title);   // it attaches the layout element
+        intro = itemView.findViewById(R.id.item_brief_intro);   // same as above
+        parent = itemView.findViewById(R.id.parent);    // same as above
     }
 }

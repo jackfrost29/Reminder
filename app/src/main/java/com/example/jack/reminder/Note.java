@@ -8,4 +8,10 @@ public class Note extends Item {
         super(title);
         this.text = text;
     }
+
+    public Note(Note note){
+        super(note.title);
+        this.text = note.text;
+
+    }
 }

@@ -5,11 +5,15 @@ import java.util.Date;
 import java.util.List;
 
 public class ListItem extends Item {
-    Date date;
     List<String> list;
-    public ListItem(String title, ArrayList<String> list, Date date) {
+    public ListItem(String title, ArrayList<String> list) {
         super(title);
         this.list = list;
-        this.date = date;
+    }
+
+    public ListItem(ListItem item){
+        super(item.title);
+        this.list = item.list;
+
     }
 }

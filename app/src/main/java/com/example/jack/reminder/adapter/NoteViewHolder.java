@@ -1,10 +1,14 @@
-package com.example.jack.reminder;
+package com.example.jack.reminder.adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.jack.reminder.data.Item;
+import com.example.jack.reminder.data.Note;
 
 import java.util.List;
 
@@ -12,13 +16,13 @@ public class NoteViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     List<Item> items;
     TextView title, text;
     LinearLayout parent;
-    public Note mNote;
-    public int mPosition;
-    public NoteViewHolder(@NonNull View itemView, Note mNote, int mPosition) {
+    public Note note;
+    public int position;
+    public NoteViewHolder(@NonNull View itemView, int position, Context context) {
         super(itemView);
         itemView.setOnClickListener(this);
-        this.mNote = mNote;
-        this.mPosition = mPosition;
+        this.note = note;
+        this.position = position;
     }
 
     @Override

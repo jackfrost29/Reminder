@@ -1,7 +1,6 @@
-package com.example.jack.reminder;
+package com.example.jack.reminder.data;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class ListItem extends Item {

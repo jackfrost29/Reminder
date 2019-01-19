@@ -1,4 +1,4 @@
-package com.example.jack.reminder;
+package com.example.jack.reminder.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,23 +8,21 @@ import android.view.View;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.example.jack.reminder.data.Item;
+import com.example.jack.reminder.R;
+import com.example.jack.reminder.data.Reminder;
+import com.example.jack.reminder.activity.ReminderDetailsActivity;
+
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 public class ReminderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-    ArrayList<Item> items;   // these are for holding data
-    Reminder reminder;
-    int position;
     Context context;
 
     TextView alarmTime, alarmDate, alarmDay;    // these are for holding widgets
     Switch alarmSwitch;
 
-    public ReminderViewHolder(@NonNull View itemView, ArrayList<Item> items, int position, Context context) {
+    public ReminderViewHolder(@NonNull View itemView, Context context) {
         super(itemView);
-        this.items = items;
-        this.position = position;
         this.context = context;
         alarmTime = itemView.findViewById(R.id.alarm_time);
         alarmDate = itemView.findViewById(R.id.alarm_date);
@@ -36,7 +34,8 @@ public class ReminderViewHolder extends RecyclerView.ViewHolder implements View.
     @Override
     public void onClick(View v) {
         Intent intent = new Intent(context, ReminderDetailsActivity.class);
-        intent.putExtra("source", items);
+        int i = getAdapterPosition();
+        intent.putExtra("position", i);
         context.startActivity(intent);
     }
 }

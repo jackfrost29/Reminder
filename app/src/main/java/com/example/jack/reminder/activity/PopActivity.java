@@ -1,4 +1,4 @@
-package com.example.jack.reminder;
+package com.example.jack.reminder.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,7 +8,11 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.LinearLayout;
+
+import com.example.jack.reminder.R;
+import com.example.jack.reminder.activity.ListItemDetailActivity;
+import com.example.jack.reminder.activity.NoteDetailsActivity;
+import com.example.jack.reminder.activity.ReminderDetailsActivity;
 
 public class PopActivity extends Activity {
 

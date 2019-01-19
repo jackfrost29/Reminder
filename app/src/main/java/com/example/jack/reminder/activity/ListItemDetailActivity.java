@@ -1,19 +1,20 @@
-package com.example.jack.reminder;
+package com.example.jack.reminder.activity;
 
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import com.example.jack.reminder.data.DataHandler;
+import com.example.jack.reminder.data.ListItem;
+import com.example.jack.reminder.R;
+
 import java.util.ArrayList;
-import java.util.Date;
 
 public class ListItemDetailActivity extends Activity {
 

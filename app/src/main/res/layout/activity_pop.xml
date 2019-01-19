@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".PopActivity"
+    tools:context=".activity.PopActivity"
     android:background="@drawable/pop_bg"
     android:id="@+id/pop_activity_id">
 

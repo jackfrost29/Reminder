@@ -1,17 +1,18 @@
-package com.example.jack.reminder;
+package com.example.jack.reminder.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.jack.reminder.data.Item;
+import com.example.jack.reminder.data.Note;
+import com.example.jack.reminder.R;
+import com.example.jack.reminder.data.Reminder;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -24,20 +25,35 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
 
+    // on create view holder: it creates new viewholder from inflating new view
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int type) {
 
-        int x = getItemViewType(i);
+        RecyclerView.ViewHolder obj;
 
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_item_list, viewGroup, false);
+        if(type == 1){     // Reminder
+            View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_reminder_view, viewGroup, false);
 
-        return new ItemViewHolder(view);
+            obj = new ReminderViewHolder(view, i, context);
+        }
+
+        else if(type == 2){       // Note
+            View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_plain_note_view, viewGroup, false);
+
+            obj = new NoteViewHolder(view, context);
+        }
+        else{   // List
+
+        }
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+        if(viewHolder instanceof ReminderViewHolder){
 
+        }
+        el
     }
 /*
     @Override
@@ -61,7 +77,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemViewType(int position){
-        Item obj = items.get(position)
+        Item obj = items.get(position);
         if(obj instanceof Reminder)
             return 1;
         else if(obj instanceof Note)

@@ -1,6 +1,4 @@
-package com.example.jack.reminder;
-
-import java.util.Date;
+package com.example.jack.reminder.data;
 
 public class Note extends Item {
     String text;

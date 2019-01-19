@@ -6,6 +6,7 @@ import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
+import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.example.jack.reminder.data.MyTime;
 import com.example.jack.reminder.data.Reminder;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class ReminderDetailsActivity extends Activity
@@ -154,14 +156,48 @@ public class ReminderDetailsActivity extends Activity
         selectTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // incomplete
+                int hour, minute;
+                if(reminder.getRemTime().isTimeSet()){
+                    hour = reminder.getRemTime().getHour();
+                    minute = reminder.getRemTime().getMinute();
+                }
+                // create Time fragment
+                else {
+                    Calendar calendar = Calendar.getInstance();
+                    hour = calendar.get(Calendar.HOUR);
+                    minute = calendar.get(Calendar.MINUTE);
+                }
+
+                TimePickerDialog timePicker = new TimePickerDialog(
+                        ReminderDetailsActivity.this, ReminderDetailsActivity.this,
+                        hour, minute, DateFormat.is24HourFormat(ReminderDetailsActivity.this)
+                );
+                timePicker.show();
             }
         });
 
         selectDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // incomplete
+                int day, month, year;
+                if(reminder.getRemTime().isDateSet()){
+                    day = reminder.getRemTime().getDayOfMonth();
+                    month = reminder.getRemTime().getMonth();
+                    year = reminder.getRemTime().getYear();
+                }
+
+                else {
+                    Calendar c = Calendar.getInstance();
+                    day = c.get(Calendar.DAY_OF_MONTH);
+                    month = c.get(Calendar.MONTH);
+                    year = c.get(Calendar.YEAR);
+
+                }
+                DatePickerDialog datePicker = new DatePickerDialog(
+                        ReminderDetailsActivity.this, ReminderDetailsActivity.this,
+                        year, month, day
+                );
+                datePicker.show();
             }
         });
 

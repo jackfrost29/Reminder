@@ -89,6 +89,38 @@ public class MyTime {
             return 4;
     }
 
+    public boolean isTimeSet(){
+        return finalTimeSetFlag;
+    }
+
+    public int getDayOfMonth() {
+        return dayOfMonth;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public int getHour() {
+        return hour;
+    }
+
+    public int getMinute() {
+        return minute;
+    }
+
+    public String getAmPm() {
+        return amPm;
+    }
+
+    public boolean isDateSet(){
+        return finalDateSetFlag;
+    }
+
     public String getDayString(){       // used for displaying date in screen button
         if(finalDateSetFlag == false)
             return "No Date Selected";

@@ -4,8 +4,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class Sample extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    class ViewHolder0 extends RecyclerView.ViewHolder {
+public class Sample{   // extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    /*class ViewHolder0 extends RecyclerView.ViewHolder {
 
         public ViewHolder0(View itemView) {
             super(itemView);
@@ -57,5 +57,5 @@ public class Sample extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             ...
                 break;
         }
-    }
+    }*/
 }

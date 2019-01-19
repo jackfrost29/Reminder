@@ -78,6 +78,8 @@ public class ReminderDetailsActivity extends Activity
 
             if(position != -1)  //delete when position is not -1; i.e when the item to be deleted exists in the list
                 DataHandler.deleteItem(position);
+
+            finish();
         }
 
         else{
@@ -103,6 +105,8 @@ public class ReminderDetailsActivity extends Activity
 
                 }
             }
+
+            // to save or not to save
             if(toastString.equals("") == false){
                 Toast toast = Toast.makeText(this, toastString, Toast.LENGTH_LONG);
                 toast.show();

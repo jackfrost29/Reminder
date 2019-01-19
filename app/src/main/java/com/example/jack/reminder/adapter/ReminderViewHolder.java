@@ -38,4 +38,5 @@ public class ReminderViewHolder extends RecyclerView.ViewHolder implements View.
         intent.putExtra("position", i);
         context.startActivity(intent);
     }
+
 }

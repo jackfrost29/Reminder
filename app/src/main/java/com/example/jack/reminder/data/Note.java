@@ -12,4 +12,14 @@ public class Note extends Item {
         this.text = note.text;
 
     }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+
 }

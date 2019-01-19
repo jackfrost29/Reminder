@@ -9,6 +9,7 @@
     >
 
     <TextView
+        android:id="@+id/row_note_view_title_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Title"
@@ -17,6 +18,7 @@
         />
 
     <TextView
+        android:id="@+id/row_note_view_text_id"
         android:textSize="18dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -36,18 +36,18 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if(type == 1){     // Reminder
 
             View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_reminder_view, viewGroup, false);
-            obj = new ReminderViewHolder(view, context);
+            obj = new ReminderViewHolder(view);
         }
 
         else if(type == 2){       // Note
 
             View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_plain_note_view, viewGroup, false);
-            obj = new NoteViewHolder(view, context);
+            obj = new NoteViewHolder(view);
         }
         else {   // List
 
             View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_list_view, viewGroup, false);
-            obj = new ListItemViewHolder(view, context);
+            obj = new ListItemViewHolder(view);
         }
 
         return obj;

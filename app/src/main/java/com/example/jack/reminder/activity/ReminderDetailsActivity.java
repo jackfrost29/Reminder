@@ -46,7 +46,8 @@ public class ReminderDetailsActivity extends Activity
         setContentView(R.layout.activity_reminder_details);
 
         if(getIntent().hasExtra("position"))
-            position = Integer.parseInt(getIntent().getStringExtra("position"));
+            position = getIntent().getIntExtra("position", 0);
+
         else
             position = -1;
 
@@ -137,6 +138,13 @@ public class ReminderDetailsActivity extends Activity
                 //set or cancel alarm
 
                 Intent intent = new Intent(this, MyBroadcastReceiver.class);
+
+                intent.putExtra("source", "Reminder");
+                if(position == -1)
+                    intent.putExtra("position", DataHandler.getFullList().size());
+                else
+                    intent.putExtra("position", position);
+
                 PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
 

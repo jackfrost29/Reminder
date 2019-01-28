@@ -93,7 +93,7 @@ public class ListItem extends Item {
     }
     public String getSecondText(){
         if(list.size() > 1)
-            return list.get(1);
+            return "♦ " + list.get(1);
 
         return "♦ " + "<No Item Selected>";
     }

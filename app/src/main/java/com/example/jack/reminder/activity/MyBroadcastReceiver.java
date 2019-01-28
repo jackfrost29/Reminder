@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 
 import com.example.jack.reminder.data.DataHandler;
 import com.example.jack.reminder.data.Item;
@@ -26,9 +27,12 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
          the position is required
 
          */
+
+        Log.d("onReceive: ", "begin");
+
         notificationHelper = new NotificationHelper(context);
 
-        int position = Integer.parseInt(intent.getStringExtra("position"));
+        int position = intent.getIntExtra("position", 0);
         String source = intent.getStringExtra("source");
         Item obj;
 

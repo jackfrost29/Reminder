@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,7 +27,7 @@ import java.util.GregorianCalendar;
 public class ListItemDetailActivity extends Activity implements DatePickerDialog.OnDateSetListener {
 
     private LinearLayout parentLinearLayout;
-    private int position;
+    private Integer position;
     Button addButton, dateButton;
     ListItem listItem;
 
@@ -85,10 +86,9 @@ public class ListItemDetailActivity extends Activity implements DatePickerDialog
         }
 
         else {  // delete the item
-            if(position != -1){
-                // this item is created in items list, need to be destroyed
+
+            if(position != -1)
                 DataHandler.deleteItem(position);
-            }
 
             finish();
         }
@@ -102,8 +102,12 @@ public class ListItemDetailActivity extends Activity implements DatePickerDialog
         setContentView(R.layout.activity_list_item_detail);
         parentLinearLayout = (LinearLayout) findViewById(R.id.parent_linear_layout);
 
+        if(getIntent().hasExtra("position"))
+            position = getIntent().getIntExtra("position", 0);
 
-        position = (getIntent().hasExtra("position")) ? Integer.parseInt(getIntent().getStringExtra("position")) : -1;
+        else
+            position = -1;
+
 
         setWidgets();
 
@@ -112,12 +116,15 @@ public class ListItemDetailActivity extends Activity implements DatePickerDialog
     @Override
     protected void onStart() {
         super.onStart();
+
         if (position == -1)
             listItem = new ListItem();
-        else
-            listItem = (ListItem)DataHandler.getItem(position);
+        else {
+            listItem = (ListItem) DataHandler.getItem(position);
+            loadFields((ArrayList<String>) listItem.getList());
+        }
 
-        loadFields((ArrayList<String>) listItem.getList());
+
     }
 
     public void loadFields(ArrayList<String> list){

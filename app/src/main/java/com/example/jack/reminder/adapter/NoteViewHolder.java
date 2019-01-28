@@ -18,12 +18,10 @@ import java.util.List;
 
 public class NoteViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     TextView title, text, date;
-    Context context;
 
 
-    public NoteViewHolder(@NonNull View itemView, Context context) {
+    public NoteViewHolder(@NonNull View itemView) {
         super(itemView);
-        this.context = context;
         date = (TextView) itemView.findViewById(R.id.row_note_view_date_id);
         title = (TextView) itemView.findViewById(R.id.row_note_view_title_id);
         text = (TextView) itemView.findViewById(R.id.row_note_view_text_id);
@@ -33,10 +31,10 @@ public class NoteViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(context, NoteDetailsActivity.class);
+        Intent intent = new Intent(v.getContext(), NoteDetailsActivity.class);
         int i = getAdapterPosition();
         intent.putExtra("position", i);
-        context.startActivity(intent);
+        v.getContext().startActivity(intent);
 
     }
 

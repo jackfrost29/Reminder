@@ -80,8 +80,7 @@ public class NotificationHelper extends ContextWrapper {
         return new NotificationCompat.Builder(getApplicationContext(), channel1ID)
                 .setSound(uri)
                 .setContentTitle(title)
-                .setContentText(message)
-                .setAutoCancel(true);
+                .setContentText(message);
     }
 
     public NotificationCompat.Builder getChannel2Notification(String title, String message){

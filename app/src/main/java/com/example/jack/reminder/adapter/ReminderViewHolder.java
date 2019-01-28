@@ -18,14 +18,12 @@ import com.example.jack.reminder.activity.ReminderDetailsActivity;
 import java.util.ArrayList;
 
 public class ReminderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-    Context context;
 
     TextView alarmTime, alarmDate, alarmDay;    // these are for holding widgets
     Switch alarmSwitch;
 
-    public ReminderViewHolder(@NonNull View itemView, Context context) {
+    public ReminderViewHolder(@NonNull View itemView) {
         super(itemView);
-        this.context = context;
         alarmTime = itemView.findViewById(R.id.alarm_time);
         alarmDate = itemView.findViewById(R.id.alarm_date);
         alarmDay = itemView.findViewById(R.id.alarm_day);
@@ -50,10 +48,10 @@ public class ReminderViewHolder extends RecyclerView.ViewHolder implements View.
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(context, ReminderDetailsActivity.class);
+        Intent intent = new Intent(v.getContext(), ReminderDetailsActivity.class);
         int i = getAdapterPosition();
         intent.putExtra("position", i);
-        context.startActivity(intent);
+        v.getContext().startActivity(intent);
     }
 
 }

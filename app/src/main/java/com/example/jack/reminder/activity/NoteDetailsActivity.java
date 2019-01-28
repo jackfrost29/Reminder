@@ -21,10 +21,10 @@ public class NoteDetailsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_details);
-        String s = getIntent().getStringExtra("position");
 
         if(getIntent().hasExtra("position"))
-            position = Integer.parseInt(getIntent().getStringExtra("position"));
+            position = getIntent().getIntExtra("position", 0);
+
         else
             position = -1;
 

@@ -105,6 +105,17 @@ public class MyTime {
         return year;
     }
 
+    public int getHour24Format(){
+        int a = hour;
+        if(a == 12)
+            a = 0;
+
+        if(amPm.equals("PM"))
+            a = a+12;
+
+        return a;
+    }
+
     public int getHour() {
         return hour;
     }
@@ -121,11 +132,15 @@ public class MyTime {
         return finalDateSetFlag;
     }
 
+    public String getDayOfWeekString(){
+        return weeklyDays.get(dayOfWeek-1);
+    }
+
     public String getDayString(){       // used for displaying date in screen button
         if(finalDateSetFlag == false)
             return "No Date Selected";
 
-        String s = dayOfMonth+" "+yearlyMonths.get(dayOfMonth-1)+", "+year+". "+weeklyDays.get(dayOfWeek-1);
+        String s = dayOfMonth+" "+yearlyMonths.get(month)+", "+year+". "+weeklyDays.get(dayOfWeek);
         return s;
     }
 

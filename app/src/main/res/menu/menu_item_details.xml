@@ -10,12 +10,12 @@
     <item
         android:id="@+id/action_save"
         android:icon="@android:drawable/ic_menu_save"
-        android:title="save"
+        android:title="Save"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_delete"
         android:icon="@android:drawable/ic_menu_delete"
-        android:title="remove_card"
+        android:title="Delete"
         app:showAsAction="ifRoom" />
 </menu>

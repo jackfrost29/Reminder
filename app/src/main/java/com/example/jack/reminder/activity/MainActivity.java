@@ -9,29 +9,48 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.jack.reminder.data.DataHandler;
 import com.example.jack.reminder.data.Item;
 import com.example.jack.reminder.adapter.MyAdapter;
 import com.example.jack.reminder.R;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends Activity {
 
     RecyclerView recyclerView;
-    ArrayList<Item> items = new ArrayList<>();
+    ArrayList<Item> items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // data will be loader from files inside this method
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initItems();
+        try {
+            DataHandler.load(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        items =  DataHandler.getFullList();
+
         recyclerView = findViewById(R.id.item_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new MyAdapter(this, items));
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        recyclerView.getAdapter().notifyDataSetChanged();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -51,15 +70,10 @@ public class MainActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    public void initItems(){
-        for(int i=1; i<=100; i++){
-//            items.add(new Item("Item "+i, "This is the "+i+"th item."));
-        }
-    }
+/*
 
     public void onClickFAB(View view) {
         // create the pop activity
         startActivity(new Intent(this, PopActivity.class));
-    }
+    }*/
 }

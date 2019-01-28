@@ -1,18 +1,23 @@
 package com.example.jack.reminder.activity;
 
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -31,16 +36,24 @@ public class ReminderDetailsActivity extends Activity
     int position;
     EditText title;
     Button selectDate, selectTime;
+    Switch alarmSwitch;
     Reminder reminder;
+    AlarmManager alarmManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reminder_details);
-        String s = getIntent().getStringExtra("position");
-        position = (s.equals(null)) ? -1 : Integer.parseInt(s);
+
+        if(getIntent().hasExtra("position"))
+            position = Integer.parseInt(getIntent().getStringExtra("position"));
+        else
+            position = -1;
 
         setWidgets();
+
+        alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+        Log.d("onCreate: ", "after");
 
     }
 
@@ -49,20 +62,17 @@ public class ReminderDetailsActivity extends Activity
         super.onStart();
         // setting texts of
         // title, date, time etc;
-        if(position == -1){
+
+        if(position == -1)
             reminder = new Reminder("", new MyTime());
-            // New Reminder Item
-            // no need to set anything
-        }
-        else{
+
+        else {
             reminder = (Reminder) DataHandler.getItem(position);
-
+            title.setText(reminder.getTitle());  // title set
+            selectDate.setText(reminder.getRemTime().getDayString());    // date set
+            selectTime.setText(reminder.getRemTime().getTimeString());   // time set
+            alarmSwitch.setChecked(reminder.getIsAlarmSet());
         }
-
-        title.setText(reminder.getTitle());  // title set
-        selectDate.setText(reminder.getRemTime().getDayString());    // date set
-        selectTime.setText(reminder.getRemTime().getTimeString());   // time set
-
     }
 
     @Override
@@ -73,6 +83,11 @@ public class ReminderDetailsActivity extends Activity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        /* when will the alarm be set?
+            when the alarmSwitch will be set checked;
+         */
+
         if(item.getItemId() == R.id.action_delete){
             // delete the reminder object from dataset and kill the activity
 
@@ -107,14 +122,31 @@ public class ReminderDetailsActivity extends Activity
             }
 
             // to save or not to save
-            if(toastString.equals("") == false){
+            if(!toastString.equals("")){
                 Toast toast = Toast.makeText(this, toastString, Toast.LENGTH_LONG);
                 toast.show();
             }
             else{
                 // everything is ok, now you may kill the activity and save the data
 
+                // set reminder title
                 reminder.setTitle(title.getText().toString());
+
+                //no need to set reminder date and time because it's already done
+
+                //set or cancel alarm
+
+                Intent intent = new Intent(this, MyBroadcastReceiver.class);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+
+                reminder.setAlarmManager(alarmManager, pendingIntent);
+                reminder.setIsAlarmSet(alarmSwitch.isChecked());
+
+                // finally set the alarm
+
+                reminder.setAlarm();
+
                 if(position == -1)
                     DataHandler.setNewItem(reminder);
                 else
@@ -133,11 +165,16 @@ public class ReminderDetailsActivity extends Activity
             then there was no previous reminder object created for rendering this particular activity
             otherwise the the reminder object already created will serve the purpose
         */
+
+        Log.d("onDateSet: ", "1");
         GregorianCalendar date = new GregorianCalendar(year, month, dayOfMonth-1);
         int dayOfWeek=date.get(date.DAY_OF_WEEK);
 
+        Log.d("onDateSet: ", "2");
         reminder.getRemTime().setDateManually(dayOfMonth, dayOfWeek, month, year);
+        Log.d("onDateSet: ", "3");
         selectDate.setText(reminder.getRemTime().getDayString());   // set the newly selected day to button
+        Log.d("onDateSet: ", "4");
 
     }
 
@@ -156,6 +193,7 @@ public class ReminderDetailsActivity extends Activity
         title = (EditText)findViewById(R.id.title_of_the_reminder);
         selectDate = (Button)findViewById(R.id.select_date_of_reminder);
         selectTime = (Button)findViewById(R.id.select_time_of_reminder);
+        alarmSwitch = (Switch)findViewById(R.id.reminder_activity_switch_id);
 
         selectTime.setOnClickListener(new View.OnClickListener() {
             @Override

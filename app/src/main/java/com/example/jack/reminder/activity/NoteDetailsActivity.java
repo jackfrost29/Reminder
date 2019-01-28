@@ -22,7 +22,11 @@ public class NoteDetailsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_details);
         String s = getIntent().getStringExtra("position");
-        position = (s.equals(null)) ? -1 : Integer.parseInt(s);
+
+        if(getIntent().hasExtra("position"))
+            position = Integer.parseInt(getIntent().getStringExtra("position"));
+        else
+            position = -1;
 
         setWidgets();
 

@@ -44,6 +44,7 @@ public class PopActivity extends Activity {
             public void onClick(View v) {
                 // new reminder will be displayed
                 startActivity(new Intent(getApplicationContext(), ReminderDetailsActivity.class));
+                finish();
             }
         });
 
@@ -52,8 +53,8 @@ public class PopActivity extends Activity {
             @Override
             public void onClick(View v) {
                 // new note will be displayed
-                finish();
                 startActivity(new Intent(getApplicationContext(), NoteDetailsActivity.class));
+                finish();
             }
         });
 
@@ -63,6 +64,7 @@ public class PopActivity extends Activity {
             public void onClick(View v) {
                 // new list will be displayed
                 startActivity(new Intent(getApplicationContext(), ListItemDetailActivity.class));
+                finish();
             }
         });
     }

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.jack.reminder.data.Item;
+import com.example.jack.reminder.data.ListItem;
 import com.example.jack.reminder.data.Note;
 import com.example.jack.reminder.R;
 import com.example.jack.reminder.data.Reminder;
@@ -33,47 +34,60 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         RecyclerView.ViewHolder obj;
 
         if(type == 1){     // Reminder
-            View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_reminder_view, viewGroup, false);
 
-            obj = new ReminderViewHolder(view, i, context);
+            View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_reminder_view, viewGroup, false);
+            obj = new ReminderViewHolder(view, context);
         }
 
         else if(type == 2){       // Note
-            View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_plain_note_view, viewGroup, false);
 
+            View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_plain_note_view, viewGroup, false);
             obj = new NoteViewHolder(view, context);
         }
-        else{   // List
+        else {   // List
 
+            View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_list_view, viewGroup, false);
+            obj = new ListItemViewHolder(view, context);
         }
+
+        return obj;
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+
+        Item item;
+
         if(viewHolder instanceof ReminderViewHolder){
 
+            // set row view of reminder to the viewholder
+            item = (Reminder)items.get(i);
+            ((ReminderViewHolder) viewHolder).alarmTime.setText(((Reminder)item).getRowViewAlarmTimeText());
+            ((ReminderViewHolder) viewHolder).alarmDate.setText(((Reminder)item).getRemTime().getDayString());
+            ((ReminderViewHolder) viewHolder).alarmDay.setText(((Reminder)item).getRemTime().getDayOfWeekString());
+            ((ReminderViewHolder) viewHolder).alarmSwitch.setChecked(((Reminder)item).getIsAlarmSet());
         }
-        el
+
+        else if(viewHolder instanceof ListItemViewHolder){
+
+            // set row view of reminder to the viewholder
+            item = (ListItem)items.get(i);
+            ((ListItemViewHolder)viewHolder).title.setText(((ListItem)item).getTitle());
+            ((ListItemViewHolder)viewHolder).txtView1.setText(((ListItem)item).getFirstText());
+            ((ListItemViewHolder)viewHolder).txtView2.setText(((ListItem)item).getSecondText());
+            ((ListItemViewHolder)viewHolder).txtViewDate.setText(((ListItem)item).getRemTime().getDayString());
+        }
+
+        else if(viewHolder instanceof NoteViewHolder){
+            item = (Note)items.get(i);
+            ((NoteViewHolder) viewHolder).title.setText(((Note)item).getTitle());
+            ((NoteViewHolder) viewHolder).date.setText(((Note)item).getRowViewDateString());
+            ((NoteViewHolder) viewHolder).text.setText(((Note)item).getText());
+
+        }
     }
-/*
-    @Override
-    public void onBindViewHolder(@NonNull ItemViewHolder viewHolder, final int i) {
 
 
-
-        final Item item = items.get(i);
-
-        viewHolder.intro.setText(item.intro);
-        viewHolder.title.setText(item.title);
-        viewHolder.parent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "Item " +(i+1)+ " was clicked!", Toast.LENGTH_SHORT).show();
-                context.startActivity(new Intent(context, NoteDetailsActivity.class));
-            }
-        });
-
-    }*/
 
     @Override
     public int getItemViewType(int position){

@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:hint="Enter your Title here"/>-->
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal" >
@@ -29,19 +29,44 @@
             android:layout_weight=".65"
             android:background="@android:drawable/ic_delete"
             android:onClick="onDelete"/>
+    </LinearLayout>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:padding="5dp"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/add_field_button"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#555"
+            android:layout_gravity="center"
+            android:onClick="onSelectDate"
+            android:textColor="#FFF"
+            android:text="Add Field"
+            android:paddingLeft="5dp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:id="@+id/add_date_button"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#555"
+            android:layout_gravity="center"
+            android:onClick="onAddField"
+            android:textColor="#FFF"
+            android:text="Select A Date"
+            android:paddingLeft="5dp"/>
+
     </LinearLayout>
-    <Button
-        android:id="@+id/add_field_button"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:background="#555"
-        android:layout_gravity="center"
-        android:onClick="onAddField"
-        android:textColor="#FFF"
-        android:text="Add Field"
-        android:paddingLeft="5dp"/>
 
 </LinearLayout>
+<!--
+
+    android:layout_marginBottom="5dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"-->

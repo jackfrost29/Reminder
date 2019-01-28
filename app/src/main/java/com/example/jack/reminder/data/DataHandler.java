@@ -8,13 +8,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DataHandler {
 
     static Context context;
     static String countFileName = "countFileName", dataFileName = "dataFileName";
-    static List<Item> items;
+    static ArrayList<Item> items;
 
     public static Item getItem(int i){
         return items.get(i);
@@ -22,7 +23,7 @@ public class DataHandler {
     public static void setItem(Item x, int i){
         items.set(i, x);
     }
-    public static List<Item> getFullList(){
+    public static ArrayList<Item> getFullList(){
         return items;
     }
     public static void deleteItem(int i){
@@ -32,8 +33,9 @@ public class DataHandler {
         items.add(item);
     }
 
-    public void load(Context mContext) throws IOException, ClassNotFoundException {
+    public static void load(Context mContext) throws IOException, ClassNotFoundException {
         context = mContext;
+        items = new ArrayList<>();
 
         File file = new File(context.getFilesDir(), countFileName);
         FileInputStream fin = new FileInputStream(file);

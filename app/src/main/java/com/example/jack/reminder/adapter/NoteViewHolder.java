@@ -17,13 +17,14 @@ import com.example.jack.reminder.data.Note;
 import java.util.List;
 
 public class NoteViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-    TextView title, text;
+    TextView title, text, date;
     Context context;
 
 
     public NoteViewHolder(@NonNull View itemView, Context context) {
         super(itemView);
         this.context = context;
+        date = (TextView) itemView.findViewById(R.id.row_note_view_date_id);
         title = (TextView) itemView.findViewById(R.id.row_note_view_title_id);
         text = (TextView) itemView.findViewById(R.id.row_note_view_text_id);
 

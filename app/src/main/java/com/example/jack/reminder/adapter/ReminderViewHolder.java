@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.example.jack.reminder.data.DataHandler;
 import com.example.jack.reminder.data.Item;
 import com.example.jack.reminder.R;
 import com.example.jack.reminder.data.Reminder;
@@ -29,6 +31,21 @@ public class ReminderViewHolder extends RecyclerView.ViewHolder implements View.
         alarmDay = itemView.findViewById(R.id.alarm_day);
         alarmSwitch = itemView.findViewById(R.id.alarm_switch);
         itemView.setOnClickListener(this);
+        alarmSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // not done
+
+                ((Reminder)DataHandler.getItem(getAdapterPosition())).setIsAlarmSet(isChecked);
+
+                if(isChecked){
+                    ((Reminder)DataHandler.getItem(getAdapterPosition())).setAlarm();
+                }
+                else
+                    ((Reminder)DataHandler.getItem(getAdapterPosition())).cancelAlarm();
+
+            }
+        });
     }
 
     @Override

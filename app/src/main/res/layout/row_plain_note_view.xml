@@ -14,10 +14,20 @@
         android:layout_height="wrap_content"
         android:text="Title"
         android:textStyle="bold"
+        android:textSize="25dp"
+        />
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:id="@+id/row_note_view_date_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="07.03.2018 : Monday"
         android:textSize="23dp"
         />
 
     <TextView
+        android:layout_marginTop="5dp"
         android:id="@+id/row_note_view_text_id"
         android:textSize="18dp"
         android:layout_width="wrap_content"

@@ -21,5 +21,8 @@ public class Note extends Item {
         return text;
     }
 
-
+    @Override
+    public String getTitle() {
+        return super.getTitle();
+    }
 }
